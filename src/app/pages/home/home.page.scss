@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  height: 100%;
+}
+
+ion-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+
+  ion-icon {
+    font-size: 32px;
+  }
+
+  span {
+    margin-left: 10px;
+    text-transform: capitalize;
+  }
+}

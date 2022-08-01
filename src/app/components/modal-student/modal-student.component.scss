@@ -1,0 +1,19 @@
+.container {
+  padding: 25px 0px 10px;
+
+  > ul {
+    list-style-type: none;
+
+    > li + li {
+      margin-top: 15px;
+    }
+
+    li ul {
+      list-style-type: disc;
+    }
+
+    li ul li + li {
+      margin-top: 8px;
+    }
+  }
+}

@@ -1,0 +1,25 @@
+<div *ngIf="schoolClass" class="container">
+  <ul>
+    <li>
+      <p><strong>Nome do curso:</strong> {{ schoolClass.courseName }}</p>
+    </li>
+
+    <li>
+      <p><strong>Descrição:</strong> {{ schoolClass.description }}</p>
+    </li>
+
+    <li>
+      <p><strong>Sala:</strong> {{ schoolClass.classroom }}</p>
+    </li>
+
+    <li>
+      <p><strong>Alunos:</strong></p>
+
+      <ul>
+        <li *ngFor="let student of schoolClass.students">
+          {{ student.name }}
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

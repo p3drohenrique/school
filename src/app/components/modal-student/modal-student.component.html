@@ -1,0 +1,45 @@
+<div *ngIf="student" class="container">
+  <ul>
+    <li>
+      <p><strong>Nome:</strong> {{ student.name }}</p>
+    </li>
+
+    <li>
+      <p><strong>E-mail:</strong> {{ student.email }}</p>
+    </li>
+
+    <li>
+      <p><strong>Celular:</strong> {{ student.phone }}</p>
+    </li>
+
+    <li>
+      <p><strong>Data de nascimento:</strong> {{ student.bornDate }}</p>
+    </li>
+
+    <h6>Endereço</h6>
+
+    <li>
+      <p><strong>CEP:</strong> {{ student.address.zipCode }}</p>
+    </li>
+
+    <li>
+      <p><strong>Logradouro:</strong> {{ student.address.street }}</p>
+    </li>
+
+    <li>
+      <p><strong>Número:</strong> {{ student.address.number }}</p>
+    </li>
+
+    <li>
+      <p><strong>Bairro:</strong> {{ student.address.neighborhood }}</p>
+    </li>
+
+    <li>
+      <p><strong>Cidade:</strong> {{ student.address.city }}</p>
+    </li>
+
+    <li>
+      <p><strong>Estado:</strong> {{ student.address.state }}</p>
+    </li>
+  </ul>
+</div>

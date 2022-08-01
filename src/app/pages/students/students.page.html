@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Alunos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/create-student">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-list class="list-data">
+    <ion-item *ngFor="let student of students" lines="none">
+      <div>
+        <ion-label>{{ student.name }}</ion-label>
+
+        <div class="item-actions">
+          <ion-button size="small" (click)="showStudent(student.id)">
+            <ion-icon size="small" name="eye-outline"></ion-icon>
+          </ion-button>
+
+          <ion-button size="small" (click)="editStudent(student.id)">
+            <ion-icon size="small" name="create-outline"></ion-icon>
+          </ion-button>
+
+          <ion-button size="small" (click)="deleteStudent(student.id)">
+            <ion-icon size="small" name="trash-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

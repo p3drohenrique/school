@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/school-classes"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title *ngIf="!id">Criar turma</ion-title>
+    <ion-title *ngIf="id">Editar turma</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="form-container">
+    <form [formGroup]="form" (ngSubmit)="handleSubmit()">
+      <ion-item lines="none">
+        <ion-label position="floating">Nome do curso</ion-label>
+        <ion-input type="text" formControlName="courseName"></ion-input>
+      </ion-item>
+      <ion-label
+        color="danger"
+        *ngIf="form.get('courseName').touched && form.get('courseName').errors?.required"
+      >
+        Digite o nome do curso
+      </ion-label>
+
+      <ion-item lines="none">
+        <ion-label position="floating">Descrição</ion-label>
+        <ion-input type="text" formControlName="description"></ion-input>
+      </ion-item>
+      <ion-label
+        color="danger"
+        *ngIf="form.get('description').touched && form.get('description').errors?.required"
+      >
+        Dê uma descrição
+      </ion-label>
+
+      <ion-item lines="none">
+        <ion-label position="floating">Sala</ion-label>
+        <ion-input type="text" formControlName="classroom"></ion-input>
+      </ion-item>
+      <ion-label
+        color="danger"
+        *ngIf="form.get('classroom').touched && form.get('classroom').errors?.required"
+      >
+        Informe a sala da turma
+      </ion-label>
+
+      <ion-item lines="none">
+        <ion-label position="floating">Alunos</ion-label>
+        <ion-select multiple formControlName="students">
+          <ion-select-option
+            *ngFor="let student of students"
+            [value]="student.id"
+          >
+            {{ student.name }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-label
+        color="danger"
+        *ngIf="form.get('students').touched && form.get('students').errors?.required"
+      >
+        Adicione alunos a turma
+      </ion-label>
+
+      <ion-button type="submit" expand="full">
+        <p *ngIf="!id">Criar</p>
+        <p *ngIf="id">Salvar</p>
+      </ion-button>
+    </form>
+  </div>
+</ion-content>

@@ -1,0 +1,178 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/students"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title *ngIf="!id">Cadastrar Aluno</ion-title>
+    <ion-title *ngIf="id">Editar Aluno</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="form-container">
+    <form [formGroup]="form" (ngSubmit)="handleSubmit()">
+      <ion-item lines="none">
+        <ion-label position="floating">Nome</ion-label>
+        <ion-input type="text" formControlName="name"></ion-input>
+      </ion-item>
+      <ion-label
+        color="danger"
+        *ngIf="form.get('name').touched && form.get('name').errors?.required"
+      >
+        Digite o nome do aluno(a)
+      </ion-label>
+
+      <ion-item lines="none">
+        <ion-label position="floating">E-mail</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-label
+        color="danger"
+        *ngIf="form.get('email').touched && form.get('email').errors?.required"
+      >
+        Digite o e-mail do aluno(a)
+      </ion-label>
+      <ion-label
+        color="danger"
+        *ngIf="form.get('email').touched && form.get('email').errors?.email"
+      >
+        E-mail inválido
+      </ion-label>
+
+      <ion-item lines="none">
+        <ion-label position="floating">Celular</ion-label>
+        <ion-input
+          type="text"
+          inputmode="numeric"
+          formControlName="phone"
+          (ionInput)="maskPhone($event)"
+          maxlength="15"
+        ></ion-input>
+      </ion-item>
+      <ion-label
+        color="danger"
+        *ngIf="form.get('phone').touched && form.get('phone').errors?.required"
+      >
+        Digite o número de celular do aluno(a)
+      </ion-label>
+      <ion-label
+        color="danger"
+        *ngIf="form.get('phone').touched && form.get('phone').errors?.pattern"
+      >
+        Número de celular inválido
+      </ion-label>
+
+      <ion-item lines="none">
+        <ion-label position="floating">Data de Nascimento</ion-label>
+        <ion-input
+          type="text"
+          inputmode="tel"
+          formControlName="bornDate"
+          maxlength="10"
+          (ionInput)="maskDate($event)"
+        ></ion-input>
+      </ion-item>
+      <ion-label
+        color="danger"
+        *ngIf="form.get('bornDate').touched && form.get('bornDate').errors?.required"
+      >
+        Digite a data de nascimento do aluno(a)
+      </ion-label>
+      <ion-label
+        color="danger"
+        *ngIf="form.get('bornDate').touched && form.get('bornDate').errors?.pattern"
+      >
+        Data de nascimento inválida
+      </ion-label>
+
+      <ion-item lines="none">
+        <ion-label position="floating">CEP</ion-label>
+        <ion-input
+          type="text"
+          inputmode="numeric"
+          formControlName="zipCode"
+          maxlength="9"
+          (ionInput)="getAddress($event); maskZipCode($event)"
+        ></ion-input>
+      </ion-item>
+      <ion-label
+        color="danger"
+        *ngIf="form.get('zipCode').touched && form.get('zipCode').errors?.pattern"
+      >
+        CEP inválido
+      </ion-label>
+
+      <ion-item lines="none">
+        <ion-label position="floating">Logradouro</ion-label>
+        <ion-input type="text" formControlName="addressStreet"></ion-input>
+      </ion-item>
+      <ion-label
+        color="danger"
+        *ngIf="form.get('addressStreet').touched && form.get('addressStreet').errors?.required"
+      >
+        Informe o logradouro do endereço do aluno
+      </ion-label>
+
+      <ion-item lines="none">
+        <ion-label position="floating">Número</ion-label>
+        <ion-input
+          type="text"
+          inputmode="numeric"
+          formControlName="addressNumber"
+        ></ion-input>
+      </ion-item>
+      <ion-label
+        color="danger"
+        *ngIf="form.get('addressNumber').touched && form.get('addressNumber').errors?.required"
+      >
+        Informe o número do endereço do aluno
+      </ion-label>
+
+      <ion-item lines="none">
+        <ion-label position="floating">Bairro</ion-label>
+        <ion-input
+          type="text"
+          formControlName="addressNeighborhood"
+        ></ion-input>
+      </ion-item>
+      <ion-label
+        color="danger"
+        *ngIf="form.get('addressNeighborhood').touched && form.get('addressNeighborhood').errors?.required"
+      >
+        Informe o bairro do endereço do aluno
+      </ion-label>
+
+      <ion-item lines="none">
+        <ion-label position="floating">Cidade</ion-label>
+        <ion-input type="text" formControlName="addressCity"></ion-input>
+      </ion-item>
+      <ion-label
+        color="danger"
+        *ngIf="form.get('addressCity').touched && form.get('addressCity').errors?.required"
+      >
+        Informe a cidade do endereço do aluno
+      </ion-label>
+
+      <ion-item lines="none">
+        <ion-label position="floating">Estado</ion-label>
+        <ion-select formControlName="addressState">
+          <ion-select-option *ngFor="let state of states" [value]="state">
+            {{ state }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-label
+        color="danger"
+        *ngIf="form.get('addressState').touched && form.get('addressState').errors?.required"
+      >
+        Informe o estado do endereço do aluno
+      </ion-label>
+
+      <ion-button type="submit" expand="full">
+        <p *ngIf="!id">Cadastrar</p>
+        <p *ngIf="id">Salvar</p>
+      </ion-button>
+    </form>
+  </div>
+</ion-content>
